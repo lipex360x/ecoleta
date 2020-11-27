@@ -10,7 +10,11 @@
     "logging":     false,
 
     "entities":   ["./src/modules/**/entities/*.{ts,js}"],
+
     "migrations": ["./src/shared/infra/typeorm/migrations/*.{ts,js}"],
+    
+    "factories": ["./src/shared/infra/typeorm/factories/*.{ts,js}"],
+    "seeds": ["./src/shared/infra/typeorm/seeds/*.{ts,js}"],
 
     "cli":{
       "migrationsDir": "./src/shared/infra/typeorm/migrations"

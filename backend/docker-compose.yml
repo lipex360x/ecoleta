@@ -1,0 +1,22 @@
+services:
+  postgresdb:
+    image: postgres
+    container_name: container_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+
+  mongodb:
+    image: mongo
+    container_name: container_mongo
+    ports:
+      - "27017:27017"
+
+  redisdb:
+    image: redis
+    container_name: container_redis
+    ports:
+      - "6379:6379"

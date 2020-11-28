@@ -1,15 +1,9 @@
 import { Router } from 'express'
-import logger from '@shared/logger'
 
-// import moduleRouter from '@modules/...'
+import ItemsRouter from '@modules/items/infra/http/routes/items.routes'
 
 const routes = Router()
 
-routes.get('/', (request, response) => {
-  logger.log('Hello Typescript')
-  return response.send('Hello Typescript')
-})
-
-// routes.use('/route', moduleRouter)
+routes.use('/items', ItemsRouter)
 
 export default routes

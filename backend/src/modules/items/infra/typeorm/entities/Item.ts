@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   BeforeInsert
 } from 'typeorm'
+import { Expose } from 'class-transformer'
 
 @Entity('items')
 export default class Item {
@@ -24,6 +25,11 @@ export default class Item {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Expose({ name: 'image_url' })
+  getImageUrl (): string | null {
+    return this.image ? `${process.env.API_URL}/uploads/${this.image}` : null
+  }
 
   @BeforeInsert()
   itemProps (): void {

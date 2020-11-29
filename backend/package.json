@@ -14,7 +14,7 @@
     "orm:revert": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert",
     "orm:show": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:show",
     
-    "test": "jest --passWithNoTests --silent --noStackTrace --setupFiles dotenv/config",
+    "test": "jest --passWithNoTests --noStackTrace --setupFiles dotenv/config",
     "test:c": "jest --clearCache",
     "test:v": "jest --passWithNoTests",
     

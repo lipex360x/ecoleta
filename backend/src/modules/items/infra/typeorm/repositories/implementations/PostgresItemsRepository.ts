@@ -1,9 +1,9 @@
-import { Repository, getRepository } from 'typeorm'
+import { Repository, getRepository, In } from 'typeorm'
 
 import Item from '@modules/items/infra/typeorm/entities/Item'
-import IItemsInterface, { CreateProps } from '@modules/items/repositories/interfaces/IItemsInterface'
+import IItemsRepository, { CreateProps, FindAllByIdProps } from '@modules/items/repositories/interfaces/IItemsRepository'
 
-export default class PostgresItemsRepository implements IItemsInterface {
+export default class PostgresItemsRepository implements IItemsRepository {
   private repository: Repository<Item>
 
   constructor () {
@@ -18,10 +18,19 @@ export default class PostgresItemsRepository implements IItemsInterface {
     return item
   }
 
-  async listAll (): Promise<Item[]> {
+  async findAll (): Promise<Item[]> {
     const getItems = await this.repository.find()
 
     return getItems
   }
-  // Repositories Methods
+
+  async findAllById ({ arrayItemsIds }:FindAllByIdProps): Promise<Item[]> {
+    const getProducts = await this.repository.find({
+      where: {
+        item_id: In(arrayItemsIds)
+      }
+    })
+
+    return getProducts
+  }
 }

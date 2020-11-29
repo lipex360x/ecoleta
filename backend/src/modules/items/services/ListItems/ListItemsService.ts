@@ -3,17 +3,17 @@ import { inject, injectable } from 'tsyringe'
 // import AppError from '@shared/errors/AppError'
 
 import Item from '@modules/items/infra/typeorm/entities/Item'
-import IItemsInterface from '@modules/items/repositories/interfaces/IItemsInterface'
+import IItemsRepository from '@modules/items/repositories/interfaces/IItemsRepository'
 
 @injectable()
 export default class ListItemsService {
   constructor (
     @inject('ItemsRepository')
-    private repository: IItemsInterface
+    private repository: IItemsRepository
   ) {}
 
   async execute (): Promise<Item[]> {
-    const getItems = await this.repository.listAll()
+    const getItems = await this.repository.findAll()
 
     return getItems
   }

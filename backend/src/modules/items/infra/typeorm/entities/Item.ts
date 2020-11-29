@@ -5,9 +5,12 @@ import {
   PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  BeforeInsert
+  BeforeInsert,
+  OneToMany
 } from 'typeorm'
 import { Expose } from 'class-transformer'
+
+import Point_Items from '@modules/points/infra/typeorm/entities/Point_Items'
 
 @Entity('items')
 export default class Item {
@@ -19,6 +22,9 @@ export default class Item {
 
   @Column()
   image: string;
+
+  @OneToMany(() => Point_Items, point_items => point_items.items, {})
+  point_items: Point_Items[]
 
   @CreateDateColumn()
   created_at: Date;

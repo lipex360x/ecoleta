@@ -13,12 +13,12 @@ export default class AddPoints1606507930626 implements MigrationInterface {
           },
 
           {
-            name: 'image',
+            name: 'name',
             type: 'varchar'
           },
 
           {
-            name: 'name',
+            name: 'image',
             type: 'varchar'
           },
 

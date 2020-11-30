@@ -16,6 +16,11 @@ export interface CreateProps {
   items: ItemsProps[]
 }
 
+export interface FindByIdProps{
+  point_id: string
+}
+
 export default interface IPointsRepository {
   create(data: CreateProps): Promise<Point>
+  findById(data: FindByIdProps): Promise<Point>
 }

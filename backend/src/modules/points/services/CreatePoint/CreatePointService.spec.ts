@@ -9,7 +9,7 @@ let fakeItemsRepository: FakeItemsRepository
 let fakePointRepository: FakePointRepository
 let createPointService: CreatePointService
 
-describe('TEST_NAME', () => {
+describe('CreatePoint', () => {
   beforeEach(() => {
     fakeItemsRepository = new FakeItemsRepository()
     fakePointRepository = new FakePointRepository()

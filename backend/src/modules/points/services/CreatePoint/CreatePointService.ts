@@ -5,6 +5,7 @@ import { inject, injectable } from 'tsyringe'
 import Point from '@modules/points/infra/typeorm/entities/Point'
 import IPointInterface from '@modules/points/repositories/interfaces/IPointsRepository'
 import IItemsRepository from '@modules/items/repositories/interfaces/IItemsRepository'
+import AppError from '@shared/errors/AppError'
 
 interface ItemsProps {
   item_id: string
@@ -36,6 +37,9 @@ export default class CreatePointService {
   async execute ({ name, image, email, whatsapp, latitude, longitude, city, uf, items }: Request): Promise<Point> {
     const arrayItemsIds = items.map(item => item.item_id)
     const getItems = await this.itemRepository.findAllById({ arrayItemsIds })
+
+    const checkItemsExists = getItems.filter(item => (item))
+    if (checkItemsExists.length !== items.length) throw new AppError('One or more items does not exists')
 
     const serializedItems = getItems.map(item => ({
       item_id: item.item_id,

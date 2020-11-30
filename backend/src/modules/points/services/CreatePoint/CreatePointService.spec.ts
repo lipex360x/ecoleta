@@ -1,4 +1,4 @@
-// import AppError from '@shared/errors/AppError'
+import AppError from '@shared/errors/AppError'
 
 import Faker from 'faker'
 import FakeItemsRepository from '@modules/items/repositories/fakes/FakeItemsRepository'
@@ -48,5 +48,26 @@ describe('TEST_NAME', () => {
         ])
       })
     )
+  })
+
+  it('should not be able to create an point with invalid items', async () => {
+    const itemArray = [
+      { item_id: 'fakeitemid01' },
+      { item_id: 'fakeitemid02' }
+    ]
+
+    await expect(
+      createPointService.execute({
+        name: Faker.name.findName(),
+        email: Faker.internet.email(),
+        whatsapp: Faker.phone.phoneNumber(),
+        image: Faker.image.imageUrl(),
+        latitude: 11.111111,
+        longitude: 22.22222,
+        city: Faker.address.city(),
+        uf: Faker.address.countryCode(),
+        items: itemArray
+      })
+    ).rejects.toBeInstanceOf(AppError)
   })
 })

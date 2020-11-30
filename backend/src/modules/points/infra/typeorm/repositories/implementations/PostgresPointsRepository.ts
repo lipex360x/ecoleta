@@ -1,7 +1,7 @@
 import { Repository, getRepository } from 'typeorm'
 
 import Point from '@modules/points/infra/typeorm/entities/Point'
-import IPointsRepository, { CreateProps } from '@modules/points/repositories/interfaces/IPointsRepository'
+import IPointsRepository, { CreateProps, FindByIdProps } from '@modules/points/repositories/interfaces/IPointsRepository'
 
 export default class PostgresPointsRepository implements IPointsRepository {
   private repository: Repository<Point>
@@ -16,5 +16,13 @@ export default class PostgresPointsRepository implements IPointsRepository {
     await this.repository.save(point)
 
     return point
+  }
+
+  async findById ({ point_id }:FindByIdProps): Promise<Point> {
+    const getPoint = this.repository.findOne(point_id, {
+      relations: ['point_items']
+    })
+
+    return getPoint
   }
 }

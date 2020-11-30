@@ -24,7 +24,7 @@ export default class Point_Items {
   @Column('uuid')
   point_id: string;
 
-  @ManyToOne(() => Item, items => items.point_items)
+  @ManyToOne(() => Item, items => items.point_items, { eager: true })
   @JoinColumn({ name: 'item_id' })
   items: Item
 

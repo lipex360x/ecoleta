@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid'
 
 import Item from '@modules/items/infra/typeorm/entities/Item'
-import IItemsRepository, { CreateProps, FindAllByIdProps } from '../interfaces/IItemsRepository'
+import IItemsRepository, { CreateProps, FindAllByIdProps, FindByNameProps } from '../interfaces/IItemsRepository'
 
 export default class FakeItemsRepository implements IItemsRepository {
   private repository: Item[] = []
@@ -20,6 +20,12 @@ export default class FakeItemsRepository implements IItemsRepository {
     this.repository.push(item)
 
     return item
+  }
+
+  async findByName ({ title }:FindByNameProps): Promise<Item> {
+    const getItem = this.repository.find(item => item.title === title)
+
+    return getItem
   }
 
   async findAll (): Promise<Item[]> {

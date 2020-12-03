@@ -20,7 +20,14 @@ export interface FindByIdProps{
   point_id: string
 }
 
+export interface ListPointsFilteredProps{
+  city?: string
+  uf?: string
+  items?: string
+}
+
 export default interface IPointsRepository {
   create(data: CreateProps): Promise<Point>
   findById(data: FindByIdProps): Promise<Point>
+  listPointsFiltered(data: ListPointsFilteredProps): Promise<Point[]>
 }

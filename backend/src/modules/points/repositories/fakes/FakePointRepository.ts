@@ -45,9 +45,6 @@ export default class FakePointRepository implements IPointsRepository {
     )
     )
 
-    console.log(items)
-    filterByItems.map(point => console.log(point.point_items))
-
-    return getPoint
+    return filterByItems
   }
 }

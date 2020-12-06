@@ -3,6 +3,7 @@ import Faker from 'faker'
 import FakePointRepository from '@modules/points/repositories/fakes/FakePointRepository'
 import ListPointsService from './ListPointsService'
 import FakeItemsRepository from '@modules/items/repositories/fakes/FakeItemsRepository'
+import AppError from '@shared/errors/AppError'
 
 let fakeItemsRepository: FakeItemsRepository
 let fakePointRepository: FakePointRepository
@@ -74,14 +75,30 @@ describe('ListPoints', () => {
 
     const city = 'Belo Horizonte'
     const uf = 'MG'
-    const items = [item04.item_id]
+    const items = [item03.item_id]
 
     const getPoint = await listPointsService.execute({ city, uf, items })
 
-    // expect(getPoint).toEqual(
-    //   expect.objectContaining({
-    //     name: 'point test'
-    //   })
-    // )
+    expect(getPoint).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          point_items: expect.arrayContaining([
+            expect.objectContaining({
+              title: 'Item03'
+            })
+          ])
+        })
+      ])
+    )
+  })
+
+  it('should not be able to list a non-existing point filtered', async () => {
+    const item01 = await fakeItemsRepository.create({ title: 'Item01', image: 'item01.jpg' })
+
+    const city = 'Belo Horizonte'
+    const uf = 'MG'
+    const items = [item01.item_id]
+
+    await expect(listPointsService.execute({ city, uf, items })).rejects.toBeInstanceOf(AppError)
   })
 })

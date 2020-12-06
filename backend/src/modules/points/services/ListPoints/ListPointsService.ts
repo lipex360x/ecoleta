@@ -17,9 +17,11 @@ export default class ListPointsService {
     private repository: IPointsRepository
   ) {}
 
-  async execute ({ city, uf, items }: Request): Promise<void> {
+  async execute ({ city, uf, items }: Request): Promise<Point[]> {
     const getPoint = await this.repository.listPointsFiltered({ city, uf, items })
 
-    // console.log(getPoint[1].point_items[0])
+    if (getPoint.length === 0) throw new AppError('Points not found')
+
+    return getPoint
   }
 }

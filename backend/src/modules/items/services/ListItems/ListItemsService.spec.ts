@@ -5,7 +5,7 @@ import ListItemsService from './ListItemsService'
 let fakeRepository: FakeItemsRepository
 let listItemsService: ListItemsService
 
-describe('TEST_NAME', () => {
+describe('ListItems', () => {
   beforeEach(() => {
     fakeRepository = new FakeItemsRepository()
     listItemsService = new ListItemsService(fakeRepository)

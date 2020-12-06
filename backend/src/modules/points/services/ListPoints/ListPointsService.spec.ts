@@ -13,7 +13,7 @@ describe('ListPoints', () => {
   beforeEach(() => {
     fakeItemsRepository = new FakeItemsRepository()
     fakePointRepository = new FakePointRepository()
-    listPointsService = new ListPointsService(fakePointRepository)
+    listPointsService = new ListPointsService(fakePointRepository, fakeItemsRepository)
   })
 
   it('should be able to list a list of filtered points', async () => {
@@ -90,6 +90,14 @@ describe('ListPoints', () => {
         })
       ])
     )
+  })
+
+  it('should not be able to list a non-existing items filtered', async () => {
+    const city = 'Belo Horizonte'
+    const uf = 'MG'
+    const items = ['non-existing-item-id']
+
+    await expect(listPointsService.execute({ city, uf, items })).rejects.toBeInstanceOf(AppError)
   })
 
   it('should not be able to list a non-existing point filtered', async () => {

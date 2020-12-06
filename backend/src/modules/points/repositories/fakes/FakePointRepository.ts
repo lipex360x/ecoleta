@@ -35,20 +35,18 @@ export default class FakePointRepository implements IPointsRepository {
     return getPoint
   }
 
-  listPointsFiltered ({ city, uf, items }:ListPointsFilteredProps): Promise<Point[] > {
-    let getPoint = new Point()
+  async listPointsFiltered ({ city, uf, items }:ListPointsFilteredProps): Promise<Point[]> {
+    const getPoint = this.repository.filter(point => point.uf === uf && point.city === city)
 
-    if (city && uf) {
-      getPoint = this.repository.filter(point => point.city === city && point.uf === uf)
-    }
+    const filterByItems = getPoint.filter(point => (
+      point.point_items.find(p => (
+        items.find(item => p.item_id === item)
+      ))
+    )
+    )
 
-    if (city) {
-      getPoint = this.repository.filter(point => point.city === city)
-    }
-
-    if (uf) {
-      getPoint = this.repository.filter(point => point.uf === uf)
-    }
+    console.log(items)
+    filterByItems.map(point => console.log(point.point_items))
 
     return getPoint
   }

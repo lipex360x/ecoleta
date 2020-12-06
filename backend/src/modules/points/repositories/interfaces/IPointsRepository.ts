@@ -21,9 +21,9 @@ export interface FindByIdProps{
 }
 
 export interface ListPointsFilteredProps{
-  city?: string
-  uf?: string
-  items?: string
+  city: string
+  uf: string
+  items: string[]
 }
 
 export default interface IPointsRepository {

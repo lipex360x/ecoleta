@@ -6,7 +6,9 @@ import CreateItemService from '@modules/items/services/CreateItem/CreateItemServ
 
 export default class CreateItemController {
   async create (request: Request, response: Response): Promise<Response> {
-    const { title, image } = request.body
+    const { title } = request.body
+
+    const image = request.file.filename
 
     const createItemService = container.resolve(CreateItemService)
 

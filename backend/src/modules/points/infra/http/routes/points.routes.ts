@@ -1,6 +1,6 @@
 import { celebrate, Joi, Segments } from 'celebrate'
-import multer from 'multer'
 import { Router } from 'express'
+import multer from 'multer'
 
 import storageConfig from '@shared/containers/providers/StorageProvider/config/storage.config'
 

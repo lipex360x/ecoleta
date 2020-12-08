@@ -28,7 +28,8 @@ export default class Point {
   whatsapp: string;
 
   @OneToMany(() => Point_Items, point_items => point_items.points, {
-    cascade: true
+    cascade: true,
+    eager: true
   })
   point_items: Point_Items[]
 

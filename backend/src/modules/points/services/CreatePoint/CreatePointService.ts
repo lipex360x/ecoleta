@@ -5,6 +5,8 @@ import { inject, injectable } from 'tsyringe'
 import Point from '@modules/points/infra/typeorm/entities/Point'
 import IPointInterface from '@modules/points/repositories/interfaces/IPointsRepository'
 import IItemsRepository from '@modules/items/repositories/interfaces/IItemsRepository'
+import IStorageProvider from '@shared/containers/providers/StorageProvider/interfaces/IStorageProvider'
+
 import AppError from '@shared/errors/AppError'
 
 interface ItemsProps {
@@ -30,8 +32,10 @@ export default class CreatePointService {
     private repository: IPointInterface,
 
     @inject('ItemsRepository')
-    private itemRepository: IItemsRepository
+    private itemRepository: IItemsRepository,
 
+    @inject('StorageProvider')
+    private storage: IStorageProvider
   ) {}
 
   async execute ({ name, image, email, whatsapp, latitude, longitude, city, uf, items }: Request): Promise<Point> {
@@ -47,6 +51,8 @@ export default class CreatePointService {
       title: item.title,
       image: item.image
     }))
+
+    await this.storage.saveFile({ file: image })
 
     const point = await this.repository.create({
       name,

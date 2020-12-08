@@ -3,17 +3,23 @@ import AppError from '@shared/errors/AppError'
 import Faker from 'faker'
 import FakeItemsRepository from '@modules/items/repositories/fakes/FakeItemsRepository'
 import FakePointRepository from '@modules/points/repositories/fakes/FakePointRepository'
+import FakeStorageProvider from '@shared/containers/providers/StorageProvider/fakes/FakeStorageProvider'
+
 import CreatePointService from './CreatePointService'
 
 let fakeItemsRepository: FakeItemsRepository
 let fakePointRepository: FakePointRepository
+let fakeStorageProvider: FakeStorageProvider
+
 let createPointService: CreatePointService
 
 describe('CreatePoint', () => {
   beforeEach(() => {
     fakeItemsRepository = new FakeItemsRepository()
     fakePointRepository = new FakePointRepository()
-    createPointService = new CreatePointService(fakePointRepository, fakeItemsRepository)
+    fakeStorageProvider = new FakeStorageProvider()
+
+    createPointService = new CreatePointService(fakePointRepository, fakeItemsRepository, fakeStorageProvider)
   })
 
   it('should be able to create a Point', async () => {

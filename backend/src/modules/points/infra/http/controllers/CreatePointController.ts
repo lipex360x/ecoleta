@@ -17,8 +17,6 @@ export default class CreatePointController {
         item_id: item.trim()
       }))
 
-    console.log(parsedItems)
-
     const serviceFunction = await service.execute({
       name,
       image,

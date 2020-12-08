@@ -1,15 +1,21 @@
 import AppError from '@shared/errors/AppError'
 
 import FakeItemsRepository from '@modules/items/repositories/fakes/FakeItemsRepository'
+import FakeStorageProvider from '@shared/containers/providers/StorageProvider/fakes/FakeStorageProvider'
+
 import CreateItemService from './CreateItemService'
 
 let fakeRepository: FakeItemsRepository
+let fakeStorageProvider: FakeStorageProvider
+
 let createItemService: CreateItemService
 
 describe('CreateItem', () => {
   beforeEach(() => {
     fakeRepository = new FakeItemsRepository()
-    createItemService = new CreateItemService(fakeRepository)
+    fakeStorageProvider = new FakeStorageProvider()
+
+    createItemService = new CreateItemService(fakeRepository, fakeStorageProvider)
   })
 
   it('should be able to create a new item', async () => {

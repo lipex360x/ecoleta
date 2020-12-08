@@ -9,6 +9,7 @@ import {
   OneToMany
 } from 'typeorm'
 import Point_Items from './Point_Items'
+import { Expose } from 'class-transformer'
 
 @Entity('points')
 export default class Point {
@@ -50,6 +51,11 @@ export default class Point {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Expose({ name: 'image_url' })
+  getImageUrl (): string | null {
+    return this.image ? `${process.env.API_URL}/uploads/${this.image}` : null
+  }
 
   @BeforeInsert()
   pointProps (): void {

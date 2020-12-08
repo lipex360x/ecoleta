@@ -18,7 +18,7 @@ const app = express()
 
 app.use(express.json())
 app.use(routes)
-app.use('/uploads', express.static(storageConfig.uploadFolder))
+app.use('/uploads', express.static(storageConfig.tmpFolder))
 
 app.use(errors())
 

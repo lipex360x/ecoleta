@@ -6,11 +6,30 @@ import CreatePointService from '@modules/points/services/CreatePoint/CreatePoint
 
 export default class CreatePointController {
   async create (request: Request, response: Response): Promise<Response> {
-    const { name, image, email, whatsapp, latitude, longitude, city, uf, items } = request.body
+    const { name, email, whatsapp, latitude, longitude, city, uf, items } = request.body
+
+    const image = request.file.filename
 
     const service = container.resolve(CreatePointService)
 
-    const serviceFunction = await service.execute({ name, image, email, whatsapp, latitude, longitude, city, uf, items })
+    const parsedItems = items.split(',')
+      .map((item: string) => ({
+        item_id: item.trim()
+      }))
+
+    console.log(parsedItems)
+
+    const serviceFunction = await service.execute({
+      name,
+      image,
+      email,
+      whatsapp,
+      latitude,
+      longitude,
+      city,
+      uf,
+      items: parsedItems
+    })
 
     return response.json(classToClass(serviceFunction))
   }

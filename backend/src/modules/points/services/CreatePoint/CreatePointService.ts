@@ -36,6 +36,7 @@ export default class CreatePointService {
 
   async execute ({ name, image, email, whatsapp, latitude, longitude, city, uf, items }: Request): Promise<Point> {
     const arrayItemsIds = items.map(item => item.item_id)
+
     const getItems = await this.itemRepository.findAllById({ arrayItemsIds })
 
     const checkItemsExists = getItems.filter(item => (item))

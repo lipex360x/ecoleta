@@ -1,6 +1,7 @@
 import { Repository, getRepository, getConnection } from 'typeorm'
 
 import Point from '@modules/points/infra/typeorm/entities/Point'
+
 import IPointsRepository, { CreateProps, FindByIdProps, ListPointsFilteredProps } from '@modules/points/repositories/interfaces/IPointsRepository'
 
 export default class PostgresPointsRepository implements IPointsRepository {
@@ -19,7 +20,7 @@ export default class PostgresPointsRepository implements IPointsRepository {
   }
 
   async findById ({ point_id }:FindByIdProps): Promise<Point> {
-    const getPoint = this.repository.findOne(point_id, {
+    const getPoint = await this.repository.findOne(point_id, {
       relations: ['point_items']
     })
 
@@ -27,17 +28,18 @@ export default class PostgresPointsRepository implements IPointsRepository {
   }
 
   async listPointsFiltered ({ city, uf, items }:ListPointsFilteredProps): Promise<Point[]> {
-    const pivot = await getConnection().manager.query(
-      `
-        select * from point_items pi 
-        inner join points p ON pi.point_id = p.point_id 
-        inner join items i ON i.item_id = pi.item_id 
-        where p.city = '${String(city)}' 
-        and p.uf = '${String(uf)}' 
-        and i.item_id in ('${items}')
-      `
-    )
+    const arrayString = items.toString()
 
-    return pivot
+    const pointFiltered = await getConnection()
+      .createQueryBuilder()
+      .select()
+      .from(Point, 'p')
+      .innerJoin('point_items', 'pi', 'pi.point_id = p.point_id')
+      .where('p.city = :city', { city })
+      .andWhere('p.uf = :uf', { uf })
+      .andWhere('pi.item_id IN (:items)', { items: arrayString })
+      .getRawMany()
+
+    return pointFiltered
   }
 }

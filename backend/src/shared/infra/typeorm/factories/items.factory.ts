@@ -9,6 +9,8 @@ define(Item, (faker: typeof Faker, context: { roles: string[] }) => {
     item_id: faker.random.uuid(),
     title: '',
     image: '',
+    point_items: [],
+    getImageUrl: null,
     created_at: dateCreate,
     updated_at: dateCreate,
     itemProps: null

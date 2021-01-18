@@ -1,8 +1,8 @@
+import express from 'express'
 import 'dotenv/config'
 import 'reflect-metadata'
 import 'express-async-errors'
 
-import express, { NextFunction, Request, Response } from 'express'
 import { errors } from 'celebrate'
 
 import '@shared/containers'
@@ -11,7 +11,7 @@ import storageConfig from '@shared/containers/providers/StorageProvider/config/s
 import routes from '@shared/infra/http/routes'
 import connectDB from '@shared/infra/typeorm'
 
-import AppError from '@shared/errors/AppError'
+import routerError from '@shared/errors/RouterError'
 connectDB()
 
 const app = express()
@@ -21,19 +21,6 @@ app.use(routes)
 app.use('/uploads', express.static(storageConfig.tmpFolder))
 
 app.use(errors())
-
-app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
-  if (err instanceof AppError) {
-    return response
-      .status(err.statusCode)
-      .json({ status: 'error', message: err.message })
-  }
-
-  console.error(err)
-  return response.status(500).json({
-    status: 'error',
-    message: 'Internal server error'
-  })
-})
+app.use(routerError)
 
 export default app

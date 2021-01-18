@@ -6,10 +6,10 @@ import Routes from './routes'
 
 const App = () => (
   <>
-    <GlobalStyle />
     <BrowserRouter>
       <Routes />
     </BrowserRouter>
+    <GlobalStyle />
   </>
 )
 

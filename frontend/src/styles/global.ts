@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
+  :root {
+    --primary-color: #34CB79;
+    --title-color: #322153;
+    --text-color: #6C6C80;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -14,9 +20,9 @@ export default createGlobalStyle`
   }
 
   body{
-    background: #312e38;
-    color: #fff;
+    background: #F0F0F5;
     -webkit-font-smoothing: antialiased;
+    color: var(--text-color);
   }
 
   html, body, #root {
@@ -24,7 +30,7 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 16px 'Roboto Slab', serif;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
   }
 
   a{
@@ -40,8 +46,10 @@ export default createGlobalStyle`
     list-style: none;
   }
 
-  h1, h2, h3, h4, h5, h6, strong {
-    font-weight: 500;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--title-color);
+    font-family: Ubuntu;
   }
 
   button{

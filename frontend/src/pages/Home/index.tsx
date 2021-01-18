@@ -1,11 +1,16 @@
 import React from 'react'
 import * as S from './styles'
 
+import Header from '../../components/Header'
+
 const Home = () => {
   return (
-    <>
-      <S.Header>Hello Home</S.Header>
-    </>
+    <S.Section>
+      <S.Content>
+        <Header />
+      </S.Content>
+
+    </S.Section>
   )
 }
 

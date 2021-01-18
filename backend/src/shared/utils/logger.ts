@@ -2,7 +2,6 @@ import tracer from 'tracer'
 import colors from 'colors'
 
 export default tracer.colorConsole({
-  level: 'log',
   filters: {
     log: colors.cyan,
     trace: colors.magenta,
@@ -11,6 +10,5 @@ export default tracer.colorConsole({
     warn: colors.yellow,
     error: [colors.red, colors.bold]
   },
-
   format: '\n{{path}}:{{line}} \n> {{message}}\n'
 })

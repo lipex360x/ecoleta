@@ -1,17 +1,22 @@
 import { createConnections } from 'typeorm'
+import promiseReload from '@shared/utils/PromiseReload'
 
-const connectDB = async () => {
-  try {
-    const connect = await createConnections()
+class OrmConnect {
+  async execute () {
+    try {
+      const connect = await createConnections()
+      const { database } = connect[0].options
 
-    console.log(`💖 Connected to ${connect[0].options.database}`)
-
-    process.on('SIGINT', () => {
-      connect[0].close().then(() => console.log(`  💔 Disconnected to ${connect[0].options.database}`))
-    })
-  } catch (error) {
-    console.log('Database Error: ', error.message)
+      console.log(`Connected to database ${database}`)
+    } catch (error) {
+      await promiseReload.execute({
+        maxAttempt: 5,
+        terminalMessage: 'Trying to connect to database',
+        timeToRetry: 2000,
+        functionRetry: () => { return this.execute() }
+      })
+    }
   }
 }
 
-export default connectDB
+export default new OrmConnect().execute()

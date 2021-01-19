@@ -1,5 +1,5 @@
 import { createConnections } from 'typeorm'
-import promiseReload from '@shared/utils/PromiseReload'
+import promiseRetry from '@shared/utils/promiseRetry'
 
 class OrmConnect {
   async execute () {
@@ -9,7 +9,7 @@ class OrmConnect {
 
       console.log(`Connected to database ${database}`)
     } catch (error) {
-      await promiseReload.execute({
+      return promiseRetry({
         maxAttempt: 5,
         terminalMessage: 'Trying to connect to database',
         timeToRetry: 2000,

@@ -1,10 +1,27 @@
-import React from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import React, { useEffect, useState } from 'react'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import * as S from './styles'
+
+import api from '../../services/api'
 
 import Header from '../../components/Header'
 
+interface ItemsProps {
+  item_id: string
+  image_url: string
+  title: string
+}
+
 const CreatePoint = () => {
+  const [items, setItems] = useState<ItemsProps[]>([])
+
+  useEffect(() => {
+    (async function () {
+      const { data } = await api.get('/items')
+      setItems(data)
+    })()
+  }, [])
+
   return (
     <S.Section>
       <Header goTo={'/'} />
@@ -87,35 +104,12 @@ const CreatePoint = () => {
           </legend>
 
           <S.List>
-            <li className="selected">
-              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
-              <span>Bateria</span>
-            </li>
-
-            <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
-              <span>Bateria</span>
-            </li>
-
-            <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
-              <span>Bateria</span>
-            </li>
-
-            <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
-              <span>Bateria</span>
-            </li>
-
-            <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
-              <span>Bateria</span>
-            </li>
-
-            <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
-              <span>Bateria</span>
-            </li>
+            {items && items.map(item => (
+              <li key={item.item_id} className="selected">
+                <img src={item.image_url} alt="" />
+                <span>{item.title}</span>
+              </li>
+            ))}
           </S.List>
 
         </S.Fieldset>

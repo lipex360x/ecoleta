@@ -29,8 +29,21 @@ export default createGlobalStyle`
     height: 100%
   }
 
-  body, input, button {
+  body, button {
     font-family: Roboto, Arial, Helvetica, sans-serif;
+  }
+
+  input[type=text],
+  input[type=email],
+  input[type=number]
+   {
+    flex: 1;
+    background: #F0F0F5;
+    border-radius: 8px;
+    border: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+    color: #6C6C80;
   }
 
   a{

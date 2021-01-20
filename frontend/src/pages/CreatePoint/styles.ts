@@ -42,6 +42,13 @@ export const Form = styled.form`
     }
   }
 
+  .leaflet {
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+
 `
 
 export const Fieldset = styled.fieldset`

@@ -1,4 +1,5 @@
 import React from 'react'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import * as S from './styles'
 
 import Header from '../../components/Header'
@@ -26,23 +27,23 @@ const CreatePoint = () => {
 
           <S.FieldGroup>
 
-          <S.Field>
-            <label htmlFor="email">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-            />
-          </S.Field >
+            <S.Field>
+              <label htmlFor="email">E-mail</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+              />
+            </S.Field >
 
-          <S.Field>
-            <label htmlFor="whatsapp">Whatsapp</label>
-            <input
-              type="text"
-              name="whatsapp"
-              id="whatsapp"
-            />
-          </S.Field >
+            <S.Field>
+              <label htmlFor="whatsapp">Whatsapp</label>
+              <input
+                type="text"
+                name="whatsapp"
+                id="whatsapp"
+              />
+            </S.Field >
           </S.FieldGroup>
 
         </S.Fieldset>
@@ -52,6 +53,15 @@ const CreatePoint = () => {
             <h2>Endereço</h2>
             <span>Selecione o Endereço no Mapa</span>
           </legend>
+
+          <MapContainer center={[-27.2092052, -49.6401092]} zoom={15} className="leaflet">
+            <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+
+            <Marker position={[-27.2092052, -49.6401092]} />
+          </MapContainer>
 
           <S.FieldGroup>
             <S.Field>
@@ -78,32 +88,32 @@ const CreatePoint = () => {
 
           <S.List>
             <li className="selected">
-              <img src="http://localhost:3333/uploads/baterias.svg" alt=""/>
+              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
               <span>Bateria</span>
             </li>
 
             <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt=""/>
+              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
               <span>Bateria</span>
             </li>
 
             <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt=""/>
+              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
               <span>Bateria</span>
             </li>
 
             <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt=""/>
+              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
               <span>Bateria</span>
             </li>
 
             <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt=""/>
+              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
               <span>Bateria</span>
             </li>
 
             <li>
-              <img src="http://localhost:3333/uploads/baterias.svg" alt=""/>
+              <img src="http://localhost:3333/uploads/baterias.svg" alt="" />
               <span>Bateria</span>
             </li>
           </S.List>

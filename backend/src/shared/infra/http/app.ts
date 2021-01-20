@@ -3,6 +3,7 @@ import 'dotenv/config'
 import 'reflect-metadata'
 import 'express-async-errors'
 import { errors } from 'celebrate'
+import cors from 'cors'
 
 import '@shared/containers'
 import '@shared/infra/typeorm'
@@ -14,6 +15,7 @@ import routes from '@shared/infra/http/routes'
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 app.use(routes)
 app.use('/uploads', express.static(storageConfig.tmpFolder))
 

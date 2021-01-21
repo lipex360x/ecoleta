@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEvent } from 'react'
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react'
 import { MapContainer, TileLayer, Marker, useMapEvent } from 'react-leaflet'
 import { LeafletMouseEvent } from 'leaflet'
 
@@ -87,7 +87,6 @@ const CreatePoint = () => {
   function handleInputChange (event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
     setFormData({ ...formData, [name]: value })
-    console.log(formData)
   }
 
   function HandleMapEvent () {
@@ -109,13 +108,35 @@ const CreatePoint = () => {
     setSelectedItems([...selectdItems, item_id])
   }
 
-  function handleSubmit()
+  async function handleSubmit (event: FormEvent) {
+    event.preventDefault()
+
+    const { name, email, whatsapp } = formData
+    const uf = selectedUf
+    const city = selectedCity
+    const [latitude, longitude] = selectedPosition
+    const items = selectdItems.toString()
+    const filename = ''
+
+    const data = {
+      name, email, whatsapp, uf, city, latitude, longitude, items, filename
+    }
+
+    try {
+      const response = await api.post('/points', data)
+      console.log(data, response)
+      alert('Ponto Criado')
+    } catch (error) {
+      const { message } = error.response.data.validation.body
+      console.log(error.response.data, message)
+    }
+  }
 
   return (
     <S.Section>
       <Header goTo={'/'} />
 
-      <S.Form>
+      <S.Form onSubmit={handleSubmit}>
         <h1>Cadostro do <br /> Ponto de Coleta</h1>
         <S.Fieldset>
           <legend>

@@ -1,18 +1,24 @@
 import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { FiUpload, FiUploadCloud } from 'react-icons/fi'
+import { FiUpload } from 'react-icons/fi'
 
 import * as S from './styles'
 
-const Dropzone = () => {
+interface DropzoneProps {
+  onFileUploaded: (file: File) => void
+}
+
+const Dropzone = ({ onFileUploaded }:DropzoneProps) => {
   const [selectedFileUrl, setSelectedFileUrl] = useState('')
 
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0]
     const fileUrl = URL.createObjectURL(file)
     setSelectedFileUrl(fileUrl)
-  }, [])
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onFileUploaded(file)
+  }, [onFileUploaded])
+
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: 'image/*'
   })

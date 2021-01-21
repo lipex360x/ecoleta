@@ -20,7 +20,8 @@ export const Form = styled.form`
   flex-direction: column;
 
   h1 {
-    font-size: 36px;
+    font-size: 32px;
+    text-align: center;
   }
 
   button {

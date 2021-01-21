@@ -8,6 +8,7 @@ import axios from 'axios'
 import api from '../../services/api'
 
 import Header from '../../components/Header'
+import Dropzone from '../../components/Dropzone'
 
 interface ItemsProps {
   item_id: string
@@ -137,7 +138,9 @@ const CreatePoint = () => {
       <Header goTo={'/'} />
 
       <S.Form onSubmit={handleSubmit}>
-        <h1>Cadostro do <br /> Ponto de Coleta</h1>
+        <h1>Cadastro de Ponto de Coleta</h1>
+        <Dropzone />
+
         <S.Fieldset>
           <legend>
             <h2>Dados</h2>
@@ -181,12 +184,13 @@ const CreatePoint = () => {
         <S.Fieldset>
           <legend>
             <h2>Endereço</h2>
-            <span>Selecione o Endereço no Mapa</span>
+            <span>Selecione o endereço clicando no Mapa</span>
           </legend>
 
           <MapContainer
             center={initialPosition}
             zoom={15}
+            scrollWheelZoom={false}
             className="leaflet"
           >
             <TileLayer

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import * as S from './styles'
+import axios from 'axios'
 
 import api from '../../services/api'
 
@@ -12,14 +13,34 @@ interface ItemsProps {
   title: string
 }
 
+interface UFProps {
+  name: string
+}
+
+interface IBGEProps {
+  sigla: string
+}
 const CreatePoint = () => {
   const [items, setItems] = useState<ItemsProps[]>([])
+  const [ufs, setUfs] = useState<string[]>([])
 
   useEffect(() => {
     (async function () {
       const { data } = await api.get('/items')
       setItems(data)
     })()
+  }, [])
+
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get<IBGEProps[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+      const ufInitials = data.map(uf => uf.sigla).sort()
+      setUfs(ufInitials)
+    })()
+  }, [])
+
+  useEffect(() => {
+
   }, [])
 
   return (
@@ -85,6 +106,9 @@ const CreatePoint = () => {
               <label htmlFor="uf">Estado (UF)</label>
               <select name="uf" id="uf">
                 <option value="0">Selecione uma UF</option>
+                {ufs && ufs.map(uf => (
+                  <option key={uf} value={uf}>{uf}</option>
+                ))}
               </select>
             </S.Field>
 
@@ -106,7 +130,7 @@ const CreatePoint = () => {
           <S.List>
             {items && items.map(item => (
               <li key={item.item_id} className="selected">
-                <img src={item.image_url} alt="" />
+                <img src={item.image_url} alt={item.title} />
                 <span>{item.title}</span>
               </li>
             ))}

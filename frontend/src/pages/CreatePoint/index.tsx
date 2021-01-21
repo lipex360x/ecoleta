@@ -1,5 +1,7 @@
 import React, { useEffect, useState, ChangeEvent } from 'react'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, useMapEvent } from 'react-leaflet'
+import { LeafletMouseEvent } from 'leaflet'
+
 import * as S from './styles'
 import axios from 'axios'
 
@@ -11,10 +13,6 @@ interface ItemsProps {
   item_id: string
   image_url: string
   title: string
-}
-
-interface UFProps {
-  name: string
 }
 
 interface IBGEUFResponse {
@@ -32,6 +30,14 @@ const CreatePoint = () => {
 
   const [cities, setCities] = useState<string[]>([])
   const [selectedCity, setSelectedCity] = useState('0')
+
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0])
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    whatsapp: ''
+  })
 
   useEffect(() => {
     (async function () {
@@ -68,6 +74,21 @@ const CreatePoint = () => {
     setSelectedCity(city)
   }
 
+  function HandleMapEvent () {
+    useMapEvent('click', (event:LeafletMouseEvent) => {
+      const { lat, lng } = event.latlng
+      setInitialPosition([lat, lng])
+    })
+
+    return null
+  }
+
+  function handleInputChange (event: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target
+    setFormData({ ...formData, [name]: value })
+    console.log(formData)
+  }
+
   return (
     <S.Section>
       <Header goTo={'/'} />
@@ -85,6 +106,7 @@ const CreatePoint = () => {
               type="text"
               name="name"
               id="name"
+              onChange={handleInputChange}
             />
           </S.Field >
 
@@ -96,6 +118,7 @@ const CreatePoint = () => {
                 type="email"
                 name="email"
                 id="email"
+                onChange={handleInputChange}
               />
             </S.Field >
 
@@ -105,6 +128,7 @@ const CreatePoint = () => {
                 type="text"
                 name="whatsapp"
                 id="whatsapp"
+                onChange={handleInputChange}
               />
             </S.Field >
           </S.FieldGroup>
@@ -117,13 +141,18 @@ const CreatePoint = () => {
             <span>Selecione o Endereço no Mapa</span>
           </legend>
 
-          <MapContainer center={[-27.2092052, -49.6401092]} zoom={15} className="leaflet">
+          <MapContainer
+            center={[-27.2092052, -49.6401092]}
+            zoom={15}
+            className="leaflet"
+          >
             <TileLayer
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker position={[-27.2092052, -49.6401092]} />
+            <Marker position={initialPosition} />
+            <HandleMapEvent />
           </MapContainer>
 
           <S.FieldGroup>

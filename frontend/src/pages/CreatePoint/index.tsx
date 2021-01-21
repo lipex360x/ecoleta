@@ -31,13 +31,16 @@ const CreatePoint = () => {
   const [cities, setCities] = useState<string[]>([])
   const [selectedCity, setSelectedCity] = useState('0')
 
-  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0])
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([-19.8360631, -43.9154301])
+  const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0])
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     whatsapp: ''
   })
+
+  const [selectdItems, setSelectedItems] = useState<string[]>([])
 
   useEffect(() => {
     (async function () {
@@ -64,6 +67,13 @@ const CreatePoint = () => {
     })()
   }, [selectedUf])
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords
+      setInitialPosition([latitude, longitude])
+    })
+  }, [])
+
   function handleSelectUf (event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value
     setSelectedUf(uf)
@@ -74,20 +84,32 @@ const CreatePoint = () => {
     setSelectedCity(city)
   }
 
-  function HandleMapEvent () {
-    useMapEvent('click', (event:LeafletMouseEvent) => {
-      const { lat, lng } = event.latlng
-      setInitialPosition([lat, lng])
-    })
-
-    return null
-  }
-
   function handleInputChange (event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
     setFormData({ ...formData, [name]: value })
     console.log(formData)
   }
+
+  function HandleMapEvent () {
+    useMapEvent('click', (event: LeafletMouseEvent) => {
+      const { lat, lng } = event.latlng
+      setSelectedPosition([lat, lng])
+    })
+
+    return null
+  }
+
+  function handleSelectItem (item_id: string) {
+    const alreadSelected = selectdItems.findIndex(item => item === item_id)
+    if (alreadSelected >= 0) {
+      const filteredItems = selectdItems.filter(item => item !== item_id)
+      setSelectedItems(filteredItems)
+      return
+    }
+    setSelectedItems([...selectdItems, item_id])
+  }
+
+  function handleSubmit()
 
   return (
     <S.Section>
@@ -142,7 +164,7 @@ const CreatePoint = () => {
           </legend>
 
           <MapContainer
-            center={[-27.2092052, -49.6401092]}
+            center={initialPosition}
             zoom={15}
             className="leaflet"
           >
@@ -151,7 +173,7 @@ const CreatePoint = () => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker position={initialPosition} />
+            <Marker position={selectedPosition} />
             <HandleMapEvent />
           </MapContainer>
 
@@ -184,7 +206,8 @@ const CreatePoint = () => {
                 <option value="0">Selecione uma Cidade</option>
 
                 {cities && cities.map(city => (
-                  <option key={city} value={city}>{city}</option>
+                  <option
+                    key={city} value={city}>{city}</option>
                 ))}
 
               </select>
@@ -200,7 +223,11 @@ const CreatePoint = () => {
 
           <S.List>
             {items && items.map(item => (
-              <li key={item.item_id} className="selected">
+              <li
+                key={item.item_id}
+                onClick={() => handleSelectItem(item.item_id)}
+                className={selectdItems.includes(item.item_id) ? 'selected' : ''}
+              >
                 <img src={item.image_url} alt={item.title} />
                 <span>{item.title}</span>
               </li>

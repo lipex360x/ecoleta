@@ -9,27 +9,10 @@
 
 #### :bookmark_tabs: Content Index
 
-- [Backend](#zap-backend)
-
 - [Frontend ReactJS](#zap-frontend)
 
 ---
 
-#### :zap: Backend
-
-* Packages and Tecnologies
-```json
-  Express
-  Typescript
-  TypeORM
-  TDD with JEST
-  DDD with SOLID
-  Validation with Celebrate
-```
-
-:rocket: [Go to Backend Folder](https://github.com/lipex360x/ecoleta/tree/master/backend)
-
----
 #### :zap: Frontend
 
 

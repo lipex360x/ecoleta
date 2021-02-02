@@ -1,5 +1,5 @@
 <h2 align="center">Ecoleta</h2>
-<p align="center">Your Waste Collection Marketiplace</p>
+<p align="center">Your Waste Collection Marketplace</p>
 
 ---
 
@@ -9,9 +9,29 @@
 
 #### :bookmark_tabs: Content Index
 
-- [Backend](#zap-backend)
+- [Introduction](#zap-introduction)
 
-- [Frontend ReactJS](#zap-frontend)
+- [Setup](#zap-setup)
+
+- [Backend Stack](#zap-backend)
+
+- [Frontend ReactJS Stack](#zap-frontend)
+
+---
+
+#### :zap: Introduction
+
+This is a code repository for the Ecoleta Project.
+A Waste Collection Marketplace for you.
+
+---
+
+#### :zap: Setup
+
+Clone this repository, run `npm i && npm run dev:server` for backend path and `npm i && npm run start` for frontend path.
+If you prefer, install all dependencies using `yarn`
+
+Check more details of this project in the back-end and front-end folders
 
 ---
 

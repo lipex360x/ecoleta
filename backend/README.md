@@ -3,6 +3,17 @@
 #### :bookmark_tabs: Content Index
 - [Package Scripts](#zap-package-scripts)
 
+:house: [Return to Main Folder](https://github.com/lipex360x/ecoleta)
+
+---
+
+#### :zap: Setup
+
+Clone this repository, run `npm i && npm run dev:server` for backend path and `npm i && npm run start` for frontend path.
+If you prefer, install all dependencies using `yarn`
+
+Check more details of this project in the back-end
+
 ---
 
 #### :zap: Package Scripts
@@ -52,6 +63,6 @@ yarn test:c testPath
 yarn build
 ```
 
-:bookmark_tabs: [Go to Content Index](#bookmark_tabs-content-index)
+:point_up_2: [Go to Content Index](#bookmark_tabs-content-index)
 
 ---

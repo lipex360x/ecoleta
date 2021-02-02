@@ -1,4 +1,4 @@
-<h2 align="center">Boilerplate Typescript DDD</h2>
+<h2 align="center">Ecoleta - Typescript API Guide</h2>
 
 #### :bookmark_tabs: Content Index
 - [Package Scripts](#zap-package-scripts)

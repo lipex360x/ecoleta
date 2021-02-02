@@ -48,6 +48,7 @@ Check more details to start this project in the back-end and front-end folders
 :rocket: [Go to Backend Folder](https://github.com/lipex360x/ecoleta/tree/master/backend)
 
 ---
+
 #### :zap: Frontend Technologies
 
 ```json

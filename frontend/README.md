@@ -27,6 +27,7 @@ If you prefer, install all dependencies using `yarn` and run `yarn start` to sta
 Check more details of this project in the back-end folder
 
 📌 Tips: for easier navigation by gihub, consider installing the [Octotree](https://chrome.google.com/webstore/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc) Plugin
+
 ---
 
 #### :zap: Technologies
@@ -38,7 +39,6 @@ Check more details of this project in the back-end folder
  React Dropzone
  Axios
 ```
-:rocket: [Go to Vue Frontend Folder](https://github.com/lipex360x/ecoleta/tree/master/frontend)
 
 ---
 

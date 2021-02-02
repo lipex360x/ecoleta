@@ -33,7 +33,7 @@ If you prefer, install all dependencies using `yarn`
 
 Check more details of this project in the back-end and front-end folders
 
-Tips: for easier navigation by gihub, consider installing the [Octotree](https://chrome.google.com/webstore/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc) plugin
+:pushpin: Tips: for easier navigation by gihub, consider installing the [Octotree](https://chrome.google.com/webstore/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc) plugin
 
 ---
 

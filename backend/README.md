@@ -1,6 +1,9 @@
 <h2 align="center">Ecoleta - Typescript API Guide</h2>
 
 #### :bookmark_tabs: Content Index
+
+- [Setup](#zap-setup)
+
 - [Package Scripts](#zap-package-scripts)
 
 :house: [Return to Main Folder](https://github.com/lipex360x/ecoleta)
@@ -9,10 +12,11 @@
 
 #### :zap: Setup
 
-Clone this repository, run `npm i && npm run dev:server` for backend path and `npm i && npm run start` for frontend path.
-If you prefer, install all dependencies using `yarn`
+Clone this repository, run `npm i && npm run dev:server` to start the project.
 
-Check more details of this project in the back-end
+If you prefer, install all dependencies using `yarn` and run `yarn dev:server` to start.
+
+Check more details of this project in the front-end folder
 
 ---
 

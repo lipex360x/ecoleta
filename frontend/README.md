@@ -9,11 +9,23 @@
 
 #### :bookmark_tabs: Content Index
 
-- [Frontend ReactJS](#zap-frontend)
+- [Setup](#zap-setup)
+
+- [Frontend Package](#zap-frontend)
 
 :house: [Return to Main Folder](https://github.com/lipex360x/ecoleta)
 
 ---
+
+
+#### :zap: Setup
+
+Clone this repository, run `npm i && npm start` to start the project.
+
+If you prefer, install all dependencies using `yarn` and run `yarn start` to start.
+
+Check more details of this project in the back-end folder
+
 
 #### :zap: Frontend
 

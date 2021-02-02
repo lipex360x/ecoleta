@@ -22,6 +22,7 @@
 #### :zap: Introduction
 
 This is a code repository for the Ecoleta Project.
+
 A Waste Collection Marketplace for you.
 
 ---

@@ -26,9 +26,11 @@ If you prefer, install all dependencies using `yarn` and run `yarn start` to sta
 
 Check more details of this project in the back-end folder
 
+📌 Tips: for easier navigation by gihub, consider installing the Octotree plugin
+
+---
 
 #### :zap: Frontend
-
 
 * Packages and Tecnologies
 ```json

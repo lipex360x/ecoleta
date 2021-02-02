@@ -18,6 +18,8 @@ If you prefer, install all dependencies using `yarn` and run `yarn dev:server` t
 
 Check more details of this project in the front-end folder
 
+📌 Tips: for easier navigation by gihub, consider installing the Octotree plugin
+
 ---
 
 #### :zap: Package Scripts

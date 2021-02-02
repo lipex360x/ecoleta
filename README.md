@@ -13,9 +13,9 @@
 
 - [Setup](#zap-setup)
 
-- [Backend Stack](#zap-backend)
+- [Backend Technologies](#zap-backend-technologies)
 
-- [Frontend ReactJS Stack](#zap-frontend)
+- [Frontend Technologies](#zap-frontend-technologies)
 
 ---
 
@@ -28,18 +28,14 @@ A Waste Collection Marketplace for you.
 
 #### :zap: Setup
 
-Clone this repository, run `npm i && npm run dev:server` for backend path and `npm i && npm run start` for frontend path.
-If you prefer, install all dependencies using `yarn`
-
-Check more details of this project in the back-end and front-end folders
+Check more details to start this project in the back-end and front-end folders
 
 :pushpin: Tips: for easier navigation by gihub, consider installing the [Octotree](https://chrome.google.com/webstore/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc) plugin
 
 ---
 
-#### :zap: Backend
+#### :zap: Backend Technologies
 
-* Packages and Tecnologies
 ```json
   Express
   Typescript
@@ -52,10 +48,8 @@ Check more details of this project in the back-end and front-end folders
 :rocket: [Go to Backend Folder](https://github.com/lipex360x/ecoleta/tree/master/backend)
 
 ---
-#### :zap: Frontend
+#### :zap: Frontend Technologies
 
-
-* Packages and Tecnologies
 ```json
  ReactJS
  Styled Components
@@ -63,7 +57,7 @@ Check more details of this project in the back-end and front-end folders
  React Dropzone
  Axios
 ```
-:rocket: [Go to Vue Frontend Folder](https://github.com/lipex360x/ecoleta/tree/master/frontend)
+:rocket: [Go to Frontend Folder](https://github.com/lipex360x/ecoleta/tree/master/frontend)
 
 ---
 

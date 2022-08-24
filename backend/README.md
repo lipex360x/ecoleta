@@ -87,7 +87,7 @@ yarn build
 
 #### :zap: Technologies
 
-```json
+```js
   Express
   Typescript
   TypeORM

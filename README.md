@@ -37,7 +37,7 @@ Check more details to start this project in the back-end and front-end folders
 
 #### :zap: Backend Technologies
 
-```json
+```js
   Express
   Typescript
   TypeORM
@@ -52,7 +52,7 @@ Check more details to start this project in the back-end and front-end folders
 
 #### :zap: Frontend Technologies
 
-```json
+```js
  ReactJS
  Styled Components
  Leaflet Map
